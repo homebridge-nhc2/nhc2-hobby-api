@@ -1,0 +1,58 @@
+{
+	"name": "nhc2-hobby-api",
+	"version": "1.0.0",
+	"description": "A wrapper library for the Niko Home Control 2 Hobby API",
+	"main": "lib/NHC2.js",
+	"scripts": {
+		"test": "jest --config jest.config.js --detectOpenHandles --forceExit --collectCoverage",
+		"test:watch": "jest --config jest.config.js --watchAll",
+		"build": "tsc",
+		"format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
+		"lint": "tslint -p tsconfig.json --fix",
+		"prepare": "npm run build",
+		"prepublishOnly": "npm test && npm run lint",
+		"preversion": "npm run lint",
+		"version": "npm run format && git add -A src",
+		"postversion": "git push && git push --tags"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/wvanvlaenderen/nhc2-hobby-api.git"
+	},
+	"keywords": [
+		"Niko Home Control"
+	],
+	"author": {
+		"name": "Wouter Van Vlaenderen",
+		"url": "https://github.com/wvanvlaenderen"
+	},
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/wvanvlaenderen/nhc2-hobby-api/issues"
+	},
+	"homepage": "https://github.com/wvanvlaenderen/nhc2-hobby-api#readme",
+	"devDependencies": {
+		"@babel/core": "^7.7.2",
+		"@babel/preset-env": "^7.7.1",
+		"@babel/preset-typescript": "^7.7.2",
+		"@types/jest": "^24.0.22",
+		"@types/mosca": "^2.8.1",
+		"@types/node": "^12.12.7",
+		"babel-jest": "^24.9.0",
+		"codecov": "^3.1.0",
+		"jest": "^24.9.0",
+		"mosca": "^2.8.3",
+		"prettier": "^1.19.1",
+		"ts-jest": "^24.1.0",
+		"tslint": "^5.20.1",
+		"tslint-config-prettier": "^1.18.0",
+		"typescript": "^3.7.2"
+	},
+	"files": [
+		"lib/**/*"
+	],
+	"dependencies": {
+		"mqtt": "^3.0.0",
+		"rxjs": "^6.5.3"
+	}
+}
