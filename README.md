@@ -75,7 +75,7 @@ intervention of professionals of which costs cannot be returned by the project t
 # Installation
 
 In order to use the library and/or samples you must first download and install
-[NodeJS](http://nodejs.org). An installable nhc2-hobby-api module for [npm](http://npmjs.org) 
+[NodeJS](http://nodejs.org). An installable [nhc2-hobby-api](https://www.npmjs.com/package/nhc2-hobby-api) module for [npm](http://npmjs.org) 
 is available.
 
 To download and install the library and all of its dependencies to a local 
