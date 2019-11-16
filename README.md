@@ -35,7 +35,7 @@ development.
 2. **Simple**. Using the library should be simple and straightforward 
 following common conventions.
 3. **Completeness** This library is a far way from being complete, but we aim to make this library feature complete based on the official Niko documentation.
-4. **Homebridge** The intent of developing this library is to build a [homebridge](https://homebridge.io/) plugin on top of this library to support control of the installation through Apple HomeKit. This plugin still needs to be developed. When adding features feel free to include the feature in the homebridge plugin as well.
+4. **Homebridge** The intent of developing this library is to build a [homebridge plugin](https://github.com/wvanvlaenderen/homebridge-nhc2) on top of this library to support control of the installation through Apple HomeKit. This plugin still needs to be developed. When adding features feel free to include the feature in the homebridge plugin as well.
 
 ## Contributing
 
