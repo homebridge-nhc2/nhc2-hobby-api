@@ -6,3 +6,5 @@ coverage
 
 src/**/*.js
 samples/**/*.js
+
+.coveralls.yml
