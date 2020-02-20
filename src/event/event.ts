@@ -1,6 +1,6 @@
-import {Device} from './device';
+import { Device } from './device';
 
 export interface Event {
-    Method: string,
-    Params: [{ Devices: Device[] }]
+  Method: string;
+  Params: [{ Devices: Device[] }];
 }

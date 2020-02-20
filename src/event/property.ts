@@ -1,4 +1,4 @@
 export interface Property {
-    Brightness?: string,
-    Status?: string
+  Brightness?: string;
+  Status?: string;
 }
