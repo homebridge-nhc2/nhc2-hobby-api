@@ -1,5 +1,8 @@
 # Changelog
 
+## v1.0.1
+* Bump codecov from 3.6.1 to 3.6.5
+
 ## v1.0.0
 * Added events
     * query available devices in a NHC2 installation
