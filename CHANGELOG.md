@@ -1,5 +1,8 @@
 # Changelog
 
+## v1.0.2
+* Bump dependencies to fix vulnerabilities
+
 ## v1.0.1
 * Bump codecov from 3.6.1 to 3.6.5
 
