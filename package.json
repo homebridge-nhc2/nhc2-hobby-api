@@ -1,6 +1,6 @@
 {
 	"name": "nhc2-hobby-api",
-	"version": "1.0.1",
+	"version": "1.0.2",
 	"description": "A wrapper library for the Niko Home Control 2 Hobby API",
 	"main": "lib/NHC2.js",
 	"scripts": {
