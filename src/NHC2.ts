@@ -1,9 +1,10 @@
 import * as mqtt from 'mqtt';
-import { connect, IClientOptions } from 'mqtt';
+import { IClientOptions } from 'mqtt';
 import { Observable, Subject } from 'rxjs';
 import { filter, flatMap, map } from 'rxjs/operators';
 import { BrightnessChangeCommand } from './command/brightness-change-command';
 import { Command } from './command/command';
+import { FreeStartStopCommand } from './command/free-start-stop-command';
 import { isListDevicesEvent, ListDevicesCommand } from './command/list-devices-command';
 import { StatusChangeCommand } from './command/status-change-command';
 import { Device } from './event/device';
@@ -33,7 +34,7 @@ export class NHC2 {
           flatMap(event => event.Params),
           map(params => params.Devices),
         )
-        .subscribe(devices => resolve(devices.filter(device => device.Type === 'action')));
+        .subscribe(devices => resolve(devices.filter(device =>  device.Type !== 'gatewayfw')));
     });
   }
 
@@ -47,6 +48,10 @@ export class NHC2 {
 
   public sendBrightnessChangeCommand(deviceUuid: string, brightness: number) {
     this.sendCommand(BrightnessChangeCommand(deviceUuid, String(brightness)));
+  }
+
+  public sendFreeStartStopCommand(deviceUuid: string) {
+    this.sendCommand(FreeStartStopCommand(deviceUuid));
   }
 
   public async subscribe() {

@@ -6,4 +6,5 @@ export interface Device {
   Name?: string;
   Model?: string; // TODO:: mag weg?
   Type?: string;
+  Online?: string;
 }
