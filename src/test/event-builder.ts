@@ -29,7 +29,7 @@ export const STATUS_CHANGED_EVENT: Event = {
   ],
 };
 
-export const FREE_START_STOP_EVENT: Event = {
+export const TRIGGER_BASIC_STATE_EVENT: Event = {
   Method: Method.DEVICES_STATUS,
   Params: [
     {

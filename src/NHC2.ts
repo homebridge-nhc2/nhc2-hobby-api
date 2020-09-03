@@ -4,7 +4,7 @@ import { Observable, Subject } from 'rxjs';
 import { filter, flatMap, map } from 'rxjs/operators';
 import { BrightnessChangeCommand } from './command/brightness-change-command';
 import { Command } from './command/command';
-import { FreeStartStopCommand } from './command/free-start-stop-command';
+import { TriggerBasicStateCommand } from './command/trigger-basic-state-command';
 import { isListDevicesEvent, ListDevicesCommand } from './command/list-devices-command';
 import { StatusChangeCommand } from './command/status-change-command';
 import { Device } from './event/device';
@@ -50,8 +50,8 @@ export class NHC2 {
     this.sendCommand(BrightnessChangeCommand(deviceUuid, String(brightness)));
   }
 
-  public sendFreeStartStopCommand(deviceUuid: string) {
-    this.sendCommand(FreeStartStopCommand(deviceUuid));
+  public sendTriggerBasicStateCommand(deviceUuid: string) {
+    this.sendCommand(TriggerBasicStateCommand(deviceUuid));
   }
 
   public async subscribe() {

@@ -3,8 +3,8 @@ import { noop } from 'rxjs';
 import {
   BRIGHTNESS_CHANGED_EVENT,
   buildEvent,
-  FREE_START_STOP_EVENT,
   STATUS_CHANGED_EVENT,
+  TRIGGER_BASIC_STATE_EVENT,
 } from './test/event-builder';
 import { LIST_DEVICES_COMMAND_TOPIC } from './command/list-devices-command';
 import { Method } from './command/method';
@@ -152,8 +152,8 @@ describe('NHC2', () => {
       });
     });
 
-    describe('free start stop command ', () => {
-      it('should emit the free start stop event', done => {
+    describe('trigger basic state', () => {
+      it('should emit the basic state trigger event', done => {
         nhc2.getEvents().subscribe(event => {
           expect(event).toStrictEqual({
             Method: Method.DEVICES_STATUS,
@@ -171,7 +171,7 @@ describe('NHC2', () => {
           done();
         });
 
-        fakeMqttServer.server.publish(buildEvent(FREE_START_STOP_EVENT), noop);
+        fakeMqttServer.server.publish(buildEvent(TRIGGER_BASIC_STATE_EVENT), noop);
       });
     });
   });
