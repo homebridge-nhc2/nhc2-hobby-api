@@ -53,6 +53,7 @@ export const LIST_DEVICS_EVENT: Event = {
           Uuid: 'ad8d61b7-b020-4a0b-b82a-c4bfbf5fbaf1',
           Model: 'generic',
           Type: 'gatewayfw',
+          Online: 'True',
         },
         {
           Properties: [{ Status: 'Off' }],
@@ -60,12 +61,7 @@ export const LIST_DEVICS_EVENT: Event = {
           Uuid: '488d61fa-de6c-4b1c-a832-f1971dc12110',
           Model: 'light',
           Type: 'action',
-        },
-        {
-          Name: 'Dimmer 1',
-          Uuid: '41ce667a-df18-4d4b-83d5-f686cc6119fe',
-          Model: 'dimmer',
-          Type: 'dimmer',
+          Online: 'True',
         },
         {
           Properties: [{ Brightness: '100' }, { Status: 'Off' }],
@@ -73,6 +69,7 @@ export const LIST_DEVICS_EVENT: Event = {
           Uuid: 'abd4b98b-f197-42ed-a51a-1681b9176228',
           Model: 'dimmer',
           Type: 'action',
+          Online: 'True',
         },
       ],
     },

@@ -34,7 +34,7 @@ export class NHC2 {
           flatMap(event => event.Params),
           map(params => params.Devices),
         )
-        .subscribe(devices => resolve(devices.filter(device =>  device.Type !== 'gatewayfw')));
+        .subscribe(devices => resolve(devices.filter(device => device.Online === 'True' && device.Type !== 'gatewayfw')));
     });
   }
 
