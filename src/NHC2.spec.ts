@@ -173,6 +173,20 @@ describe('NHC2', () => {
 
         fakeMqttServer.server.publish(buildEvent(TRIGGER_BASIC_STATE_EVENT), noop);
       });
+
+      it('should send the basic state change command for device', async done => {
+        fakeMqttServer.server.on('published', function(packet, client) {
+          if (packet.topic === STATUS_CHANGE_COMMAND_TOPIC) {
+            expect(packet.payload.toString()).toBe(
+              '{"Method":"devices.control","Params":[{"Devices":[{"Uuid":"abd4b98b-f197-42ed-a51a-1681b9176228","Properties":[{"BasicState":"Triggered"}]}]}]}',
+            );
+            done();
+          }
+        });
+
+        nhc2.sendTriggerBasicStateCommand('abd4b98b-f197-42ed-a51a-1681b9176228');
+      });
+
     });
   });
 });
