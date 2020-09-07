@@ -16,6 +16,7 @@ This library is a wrapper library around the [MQTT.js](https://github.com/mqttjs
 The library can also control your installation through commands. Commands supported include:
 * toggle light status
 * set light brightness level
+* change position (e.g. of sunblinds)
 
 ## Changes
 
