@@ -5,6 +5,7 @@ import { LIST_DEVICES_COMMAND_TOPIC } from './command/list-devices-command';
 import { Method } from './command/method';
 import { STATUS_CHANGE_COMMAND_TOPIC } from './command/status-change-command';
 import { BRIGHTNESS_CHANGE_COMMAND_TOPIC } from './command/brightness-change-command';
+import { POSITION_CHANGE_COMMAND_TOPIC } from './command/position-change-command';
 import FakeMqttServer from './test/fake-mqtt-server';
 
 let fakeMqttServer: FakeMqttServer;
@@ -95,6 +96,21 @@ describe('NHC2', () => {
       });
 
       nhc2.sendBrightnessChangeCommand('abd4b98b-f197-42ed-a51a-1681b9176228', 50);
+    });
+  });
+
+  describe('sendPositionChangeCommand', () => {
+    it('should send the position change command for device with value 50', async done => {
+      fakeMqttServer.server.on('published', function(packet, client) {
+        if (packet.topic === POSITION_CHANGE_COMMAND_TOPIC) {
+          expect(packet.payload.toString()).toBe(
+            '{"Method":"devices.control","Params":[{"Devices":[{"Uuid":"abd4b98b-f197-42ed-a51a-1681b9176228","Properties":[{"Position":"50"}]}]}]}',
+          );
+          done();
+        }
+      });
+
+      nhc2.sendPositionChangeCommand('abd4b98b-f197-42ed-a51a-1681b9176228', 50);
     });
   });
 
