@@ -3,6 +3,7 @@ import { connect, IClientOptions } from 'mqtt';
 import { Observable, Subject } from 'rxjs';
 import { filter, flatMap, map } from 'rxjs/operators';
 import { BrightnessChangeCommand } from './command/brightness-change-command';
+import { PositionChangeCommand } from './command/position-change-command';
 import { Command } from './command/command';
 import { isListDevicesEvent, ListDevicesCommand } from './command/list-devices-command';
 import { StatusChangeCommand } from './command/status-change-command';
@@ -47,6 +48,10 @@ export class NHC2 {
 
   public sendBrightnessChangeCommand(deviceUuid: string, brightness: number) {
     this.sendCommand(BrightnessChangeCommand(deviceUuid, String(brightness)));
+  }
+
+  public sendPositionChangeCommand(deviceUuid: string, position: number) {
+    this.sendCommand(PositionChangeCommand(deviceUuid, String(position)));
   }
 
   public async subscribe() {

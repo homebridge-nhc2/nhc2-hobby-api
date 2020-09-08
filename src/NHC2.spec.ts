@@ -1,10 +1,11 @@
 import { NHC2 } from './NHC2';
 import { noop } from 'rxjs';
-import { BRIGHTNESS_CHANGED_EVENT, buildEvent, STATUS_CHANGED_EVENT } from './test/event-builder';
+import { POSITION_CHANGED_EVENT, BRIGHTNESS_CHANGED_EVENT, buildEvent, STATUS_CHANGED_EVENT } from './test/event-builder';
 import { LIST_DEVICES_COMMAND_TOPIC } from './command/list-devices-command';
 import { Method } from './command/method';
 import { STATUS_CHANGE_COMMAND_TOPIC } from './command/status-change-command';
 import { BRIGHTNESS_CHANGE_COMMAND_TOPIC } from './command/brightness-change-command';
+import { POSITION_CHANGE_COMMAND_TOPIC } from './command/position-change-command';
 import FakeMqttServer from './test/fake-mqtt-server';
 
 let fakeMqttServer: FakeMqttServer;
@@ -98,6 +99,21 @@ describe('NHC2', () => {
     });
   });
 
+  describe('sendPositionChangeCommand', () => {
+    it('should send the position change command for device with value 50', async done => {
+      fakeMqttServer.server.on('published', function(packet, client) {
+        if (packet.topic === POSITION_CHANGE_COMMAND_TOPIC) {
+          expect(packet.payload.toString()).toBe(
+            '{"Method":"devices.control","Params":[{"Devices":[{"Uuid":"abd4b98b-f197-42ed-a51a-1681b9176228","Properties":[{"Position":"50"}]}]}]}',
+          );
+          done();
+        }
+      });
+
+      nhc2.sendPositionChangeCommand('abd4b98b-f197-42ed-a51a-1681b9176228', 50);
+    });
+  });
+
   describe('onMessage', () => {
     describe('brigthness change event', () => {
       it('should emit the brightness change event', done => {
@@ -142,6 +158,29 @@ describe('NHC2', () => {
         });
 
         fakeMqttServer.server.publish(buildEvent(STATUS_CHANGED_EVENT), noop);
+      });
+    });
+
+    describe('position change event', () => {
+      it('should emit the position change event', done => {
+        nhc2.getEvents().subscribe(event => {
+          expect(event).toStrictEqual({
+            Method: Method.DEVICES_STATUS,
+            Params: [
+              {
+                Devices: [
+                  {
+                    Properties: [{ Position: '55' }],
+                    Uuid: '25ee33e3-5b9c-4171-8ede-7e94f1cb6b33',
+                  },
+                ],
+              },
+            ],
+          });
+          done();
+        });
+
+        fakeMqttServer.server.publish(buildEvent(POSITION_CHANGED_EVENT), noop);
       });
     });
   });
