@@ -1,6 +1,6 @@
 import { NHC2 } from './NHC2';
 import { noop } from 'rxjs';
-import { BRIGHTNESS_CHANGED_EVENT, buildEvent, STATUS_CHANGED_EVENT } from './test/event-builder';
+import { POSITION_CHANGED_EVENT, BRIGHTNESS_CHANGED_EVENT, buildEvent, STATUS_CHANGED_EVENT } from './test/event-builder';
 import { LIST_DEVICES_COMMAND_TOPIC } from './command/list-devices-command';
 import { Method } from './command/method';
 import { STATUS_CHANGE_COMMAND_TOPIC } from './command/status-change-command';
@@ -158,6 +158,29 @@ describe('NHC2', () => {
         });
 
         fakeMqttServer.server.publish(buildEvent(STATUS_CHANGED_EVENT), noop);
+      });
+    });
+
+    describe('position change event', () => {
+      it('should emit the position change event', done => {
+        nhc2.getEvents().subscribe(event => {
+          expect(event).toStrictEqual({
+            Method: Method.DEVICES_STATUS,
+            Params: [
+              {
+                Devices: [
+                  {
+                    Properties: [{ Position: '55' }],
+                    Uuid: '25ee33e3-5b9c-4171-8ede-7e94f1cb6b33',
+                  },
+                ],
+              },
+            ],
+          });
+          done();
+        });
+
+        fakeMqttServer.server.publish(buildEvent(POSITION_CHANGED_EVENT), noop);
       });
     });
   });
