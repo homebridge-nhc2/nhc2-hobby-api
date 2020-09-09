@@ -1,4 +1,4 @@
-import {NHC2} from '../src/NHC2';
+import { NHC2 } from '../src/NHC2';
 
 const nhc2 = new NHC2('mqtts://192.168.0.216', {
     port: 8884,

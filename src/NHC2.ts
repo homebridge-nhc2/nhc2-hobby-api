@@ -1,10 +1,11 @@
 import * as mqtt from 'mqtt';
-import { connect, IClientOptions } from 'mqtt';
+import { IClientOptions } from 'mqtt';
 import { Observable, Subject } from 'rxjs';
 import { filter, flatMap, map } from 'rxjs/operators';
 import { BrightnessChangeCommand } from './command/brightness-change-command';
 import { PositionChangeCommand } from './command/position-change-command';
 import { Command } from './command/command';
+import { TriggerBasicStateCommand } from './command/trigger-basic-state-command';
 import { isListDevicesEvent, ListDevicesCommand } from './command/list-devices-command';
 import { StatusChangeCommand } from './command/status-change-command';
 import { Device } from './event/device';
@@ -34,7 +35,7 @@ export class NHC2 {
           flatMap(event => event.Params),
           map(params => params.Devices),
         )
-        .subscribe(devices => resolve(devices.filter(device => device.Type === 'action')));
+        .subscribe(devices => resolve(devices.filter(device => device.Online === 'True' && device.Type !== 'gatewayfw')));
     });
   }
 
@@ -52,6 +53,10 @@ export class NHC2 {
 
   public sendPositionChangeCommand(deviceUuid: string, position: number) {
     this.sendCommand(PositionChangeCommand(deviceUuid, String(position)));
+  }
+
+  public sendTriggerBasicStateCommand(deviceUuid: string) {
+    this.sendCommand(TriggerBasicStateCommand(deviceUuid));
   }
 
   public async subscribe() {

@@ -6,4 +6,5 @@ export interface Device {
   Name?: string;
   Model?: string;
   Type?: string;
+  Online?: string;
 }

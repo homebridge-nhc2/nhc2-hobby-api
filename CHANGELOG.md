@@ -1,5 +1,9 @@
 # Changelog
 
+## v1.1.0
+* Added actions
+    * toggle basic state change on generic devices (free start stop actions)
+
 ## v1.0.2
 * Bump dependencies to fix vulnerabilities
 

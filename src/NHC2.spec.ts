@@ -1,6 +1,12 @@
 import { NHC2 } from './NHC2';
 import { noop } from 'rxjs';
-import { POSITION_CHANGED_EVENT, BRIGHTNESS_CHANGED_EVENT, buildEvent, STATUS_CHANGED_EVENT } from './test/event-builder';
+import {
+  BRIGHTNESS_CHANGED_EVENT,
+  buildEvent,
+  POSITION_CHANGED_EVENT,
+  STATUS_CHANGED_EVENT,
+  TRIGGER_BASIC_STATE_EVENT,
+} from './test/event-builder';
 import { LIST_DEVICES_COMMAND_TOPIC } from './command/list-devices-command';
 import { Method } from './command/method';
 import { STATUS_CHANGE_COMMAND_TOPIC } from './command/status-change-command';
@@ -35,7 +41,7 @@ describe('NHC2', () => {
       await nhc2.getAccessories();
     });
 
-    it('should list all devices of type `action`', async () => {
+    it('should list only Online devices', async () => {
       const accesories = await nhc2.getAccessories();
       expect(accesories).toStrictEqual([
         {
@@ -44,6 +50,7 @@ describe('NHC2', () => {
           Uuid: '488d61fa-de6c-4b1c-a832-f1971dc12110',
           Model: 'light',
           Type: 'action',
+          Online: 'True'
         },
         {
           Properties: [{ Brightness: '100' }, { Status: 'Off' }],
@@ -51,6 +58,7 @@ describe('NHC2', () => {
           Uuid: 'abd4b98b-f197-42ed-a51a-1681b9176228',
           Model: 'dimmer',
           Type: 'action',
+          Online: 'True'
         },
       ]);
     });
@@ -182,6 +190,43 @@ describe('NHC2', () => {
 
         fakeMqttServer.server.publish(buildEvent(POSITION_CHANGED_EVENT), noop);
       });
+    });
+
+    describe('trigger basic state', () => {
+      it('should emit the basic state trigger event', done => {
+        nhc2.getEvents().subscribe(event => {
+          expect(event).toStrictEqual({
+            Method: Method.DEVICES_STATUS,
+            Params: [
+              {
+                Devices: [
+                  {
+                    Properties: [{ BasicState: 'On' }],
+                    Uuid: '25ee33e3-5b9c-4171-8ede-7e94f1cb6b33',
+                  },
+                ],
+              },
+            ],
+          });
+          done();
+        });
+
+        fakeMqttServer.server.publish(buildEvent(TRIGGER_BASIC_STATE_EVENT), noop);
+      });
+
+      it('should send the basic state change command for device', async done => {
+        fakeMqttServer.server.on('published', function(packet, client) {
+          if (packet.topic === STATUS_CHANGE_COMMAND_TOPIC) {
+            expect(packet.payload.toString()).toBe(
+              '{"Method":"devices.control","Params":[{"Devices":[{"Uuid":"abd4b98b-f197-42ed-a51a-1681b9176228","Properties":[{"BasicState":"Triggered"}]}]}]}',
+            );
+            done();
+          }
+        });
+
+        nhc2.sendTriggerBasicStateCommand('abd4b98b-f197-42ed-a51a-1681b9176228');
+      });
+
     });
   });
 });

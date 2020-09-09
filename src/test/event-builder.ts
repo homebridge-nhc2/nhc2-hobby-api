@@ -43,6 +43,20 @@ export const STATUS_CHANGED_EVENT: Event = {
   ],
 };
 
+export const TRIGGER_BASIC_STATE_EVENT: Event = {
+  Method: Method.DEVICES_STATUS,
+  Params: [
+    {
+      Devices: [
+        {
+          Properties: [{ BasicState: 'On' }],
+          Uuid: '25ee33e3-5b9c-4171-8ede-7e94f1cb6b33',
+        },
+      ],
+    },
+  ],
+};
+
 export const LIST_DEVICS_EVENT: Event = {
   Method: Method.DEVICES_LIST,
   Params: [
@@ -53,6 +67,14 @@ export const LIST_DEVICS_EVENT: Event = {
           Uuid: 'ad8d61b7-b020-4a0b-b82a-c4bfbf5fbaf1',
           Model: 'generic',
           Type: 'gatewayfw',
+          Online: 'False',
+        },
+        {
+          Name: 'gatewayfw',
+          Uuid: 'ad8d61b7-b020-4a0b-b82a-c4bfbf5fbd56',
+          Model: 'generic',
+          Type: 'energyhome',
+          Online: 'False',
         },
         {
           Properties: [{ Status: 'Off' }],
@@ -60,12 +82,7 @@ export const LIST_DEVICS_EVENT: Event = {
           Uuid: '488d61fa-de6c-4b1c-a832-f1971dc12110',
           Model: 'light',
           Type: 'action',
-        },
-        {
-          Name: 'Dimmer 1',
-          Uuid: '41ce667a-df18-4d4b-83d5-f686cc6119fe',
-          Model: 'dimmer',
-          Type: 'dimmer',
+          Online: 'True',
         },
         {
           Properties: [{ Brightness: '100' }, { Status: 'Off' }],
@@ -73,6 +90,7 @@ export const LIST_DEVICS_EVENT: Event = {
           Uuid: 'abd4b98b-f197-42ed-a51a-1681b9176228',
           Model: 'dimmer',
           Type: 'action',
+          Online: 'True',
         },
       ],
     },

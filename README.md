@@ -17,6 +17,7 @@ The library can also control your installation through commands. Commands suppor
 * toggle light status
 * set light brightness level
 * change position (e.g. of sunblinds)
+* toggle generic switches (free start stop actions)
 
 ## Changes
 
