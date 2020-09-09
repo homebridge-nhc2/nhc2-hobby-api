@@ -3,6 +3,7 @@ import { noop } from 'rxjs';
 import {
   BRIGHTNESS_CHANGED_EVENT,
   buildEvent,
+  POSITION_CHANGED_EVENT,
   STATUS_CHANGED_EVENT,
   TRIGGER_BASIC_STATE_EVENT,
 } from './test/event-builder';
