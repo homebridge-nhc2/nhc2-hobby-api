@@ -4,7 +4,7 @@ export interface Device {
   Uuid: string;
   Properties?: Property[];
   Name?: string;
-  Model?: string; // TODO:: mag weg?
+  Model?: string;
   Type?: string;
   Online?: string;
 }
