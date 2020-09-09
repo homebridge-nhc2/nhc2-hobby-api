@@ -53,7 +53,14 @@ export const LIST_DEVICS_EVENT: Event = {
           Uuid: 'ad8d61b7-b020-4a0b-b82a-c4bfbf5fbaf1',
           Model: 'generic',
           Type: 'gatewayfw',
-          Online: 'True',
+          Online: 'False',
+        },
+        {
+          Name: 'gatewayfw',
+          Uuid: 'ad8d61b7-b020-4a0b-b82a-c4bfbf5fbd56',
+          Model: 'generic',
+          Type: 'energyhome',
+          Online: 'False',
         },
         {
           Properties: [{ Status: 'Off' }],

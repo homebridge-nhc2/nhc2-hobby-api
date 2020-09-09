@@ -16,6 +16,7 @@ This library is a wrapper library around the [MQTT.js](https://github.com/mqttjs
 The library can also control your installation through commands. Commands supported include:
 * toggle light status
 * set light brightness level
+* toggle generic switches (free start stop actions)
 
 ## Changes
 
@@ -199,3 +200,5 @@ some basic usage scenarios for the library.  These samples are written in typesc
     cd samples
     tsc turn-on-all-lights.ts 
     node turn-on-all-lights.js 
+    
+    

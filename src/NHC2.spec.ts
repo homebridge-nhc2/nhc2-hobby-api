@@ -39,7 +39,7 @@ describe('NHC2', () => {
       await nhc2.getAccessories();
     });
 
-    it('should list all devices of type `action`', async () => {
+    it('should list only Online devices', async () => {
       const accesories = await nhc2.getAccessories();
       expect(accesories).toStrictEqual([
         {
