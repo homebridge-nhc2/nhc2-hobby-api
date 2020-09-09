@@ -12,7 +12,7 @@ export const TriggerBasicStateCommand = (uuid: string) => ({
             Uuid: uuid,
             Properties: [
               {
-                BasicState: "Triggered",
+                BasicState: 'Triggered',
               },
             ],
           },

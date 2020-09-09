@@ -3,11 +3,11 @@ import { IClientOptions } from 'mqtt';
 import { Observable, Subject } from 'rxjs';
 import { filter, flatMap, map } from 'rxjs/operators';
 import { BrightnessChangeCommand } from './command/brightness-change-command';
-import { PositionChangeCommand } from './command/position-change-command';
 import { Command } from './command/command';
-import { TriggerBasicStateCommand } from './command/trigger-basic-state-command';
 import { isListDevicesEvent, ListDevicesCommand } from './command/list-devices-command';
+import { PositionChangeCommand } from './command/position-change-command';
 import { StatusChangeCommand } from './command/status-change-command';
+import { TriggerBasicStateCommand } from './command/trigger-basic-state-command';
 import { Device } from './event/device';
 import { Event } from './event/event';
 
@@ -35,7 +35,9 @@ export class NHC2 {
           flatMap(event => event.Params),
           map(params => params.Devices),
         )
-        .subscribe(devices => resolve(devices.filter(device => device.Online === 'True' && device.Type !== 'gatewayfw')));
+        .subscribe(devices =>
+          resolve(devices.filter(device => device.Online === 'True' && device.Type !== 'gatewayfw')),
+        );
     });
   }
 

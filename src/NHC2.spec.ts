@@ -50,7 +50,7 @@ describe('NHC2', () => {
           Uuid: '488d61fa-de6c-4b1c-a832-f1971dc12110',
           Model: 'light',
           Type: 'action',
-          Online: 'True'
+          Online: 'True',
         },
         {
           Properties: [{ Brightness: '100' }, { Status: 'Off' }],
@@ -58,7 +58,7 @@ describe('NHC2', () => {
           Uuid: 'abd4b98b-f197-42ed-a51a-1681b9176228',
           Model: 'dimmer',
           Type: 'action',
-          Online: 'True'
+          Online: 'True',
         },
       ]);
     });
@@ -226,7 +226,6 @@ describe('NHC2', () => {
 
         nhc2.sendTriggerBasicStateCommand('abd4b98b-f197-42ed-a51a-1681b9176228');
       });
-
     });
   });
 });
