@@ -3,4 +3,5 @@ export interface Property {
   Status?: string;
   Position?: string;
   BasicState?: string;
+  Moving?: string;
 }
