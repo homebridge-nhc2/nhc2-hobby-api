@@ -12,8 +12,6 @@ const nhc2 = new NHC2('mqtts://192.168.0.216', {
     await nhc2.subscribe();
 
     const accessories = await nhc2.getAccessories();
-    accessories.forEach(accessory => {
-            console.log(accessory)
-        });
+    accessories.forEach(accessory => console.log(accessory));
 })();
 
