@@ -1,5 +1,8 @@
 # Changelog
 
+## v1.2.0
+* Added actions
+    * add fan speed actions (low, medium, high and boost)
 ## v1.1.0
 * Added actions
     * toggle basic state change on generic devices (free start stop actions)

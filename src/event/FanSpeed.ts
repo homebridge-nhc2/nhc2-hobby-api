@@ -1,6 +1,6 @@
 export enum FanSpeed {
-  Low,
-  Medium,
-  High,
-  Boost
+  Low = 'Low',
+  Medium = 'Medium',
+  High = 'High',
+  Boost = 'Boost'
 }

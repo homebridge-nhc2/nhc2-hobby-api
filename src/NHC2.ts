@@ -3,14 +3,14 @@ import { IClientOptions } from 'mqtt';
 import { Observable, Subject } from 'rxjs';
 import { filter, flatMap, map } from 'rxjs/operators';
 import { BrightnessChangeCommand } from './command/brightness-change-command';
-import { PositionChangeCommand } from './command/position-change-command';
 import { Command } from './command/command';
-import { TriggerBasicStateCommand } from './command/trigger-basic-state-command';
+import { FanSpeedChangeCommand } from './command/fan-speed-change-command';
 import { isListDevicesEvent, ListDevicesCommand } from './command/list-devices-command';
+import { PositionChangeCommand } from './command/position-change-command';
 import { StatusChangeCommand } from './command/status-change-command';
+import { TriggerBasicStateCommand } from './command/trigger-basic-state-command';
 import { Device } from './event/device';
 import { Event } from './event/event';
-import { FanSpeedChangeCommand } from './command/fan-speed-change-command';
 import { FanSpeed } from './event/FanSpeed';
 
 export class NHC2 {
