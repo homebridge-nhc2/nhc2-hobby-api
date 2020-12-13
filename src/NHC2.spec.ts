@@ -125,6 +125,30 @@ describe('NHC2', () => {
   });
 
   describe('onMessage', () => {
+    describe('update fan speed', () => {
+      it('should emit thefan speed event', done => {
+        nhc2.getEvents().subscribe(event => {
+          expect(event).toStrictEqual({
+            Method: Method.DEVICES_STATUS,
+            Params: [
+              {
+                Devices: [
+                  {
+                    Properties: [{ FanSpeed: FanSpeed.High }],
+                    Uuid: '25ee33e3-5b9c-4171-8ede-7e94f1cb6b33',
+                  },
+                ],
+              },
+            ],
+          });
+          done();
+        });
+
+        fakeMqttServer.server.publish(buildEvent(FAN_SPEED_EVENT), noop);
+      });
+    });
+
+
     describe('brigthness change event', () => {
       it('should emit the brightness change event', done => {
         nhc2.getEvents().subscribe(event => {
@@ -228,42 +252,21 @@ describe('NHC2', () => {
 
         nhc2.sendTriggerBasicStateCommand('abd4b98b-f197-42ed-a51a-1681b9176228');
       });
-      
-      describe('update fan speed', () => {
-        it('should emit thefan speed event', done => {
-          nhc2.getEvents().subscribe(event => {
-            expect(event).toStrictEqual({
-              Method: Method.DEVICES_STATUS,
-              Params: [
-                {
-                  Devices: [
-                    {
-                      Properties: [{ FanSpeed: FanSpeed.High }],
-                      Uuid: '25ee33e3-5b9c-4171-8ede-7e94f1cb6b33',
-                    },
-                  ],
-                },
-              ],
-            });
+
+      it('should send the fan speed change command', async done => {
+        fakeMqttServer.server.on('published', function(packet, client) {
+          if (packet.topic === STATUS_CHANGE_COMMAND_TOPIC) {
+            expect(packet.payload.toString()).toBe(
+              '{"Method":"devices.control","Params":[{"Devices":[{"Uuid":"abd4b98b-f197-42ed-a51a-1681b9176228","Properties":[{"FanSpeed":"Medium"}]}]}]}',
+            );
             done();
-          });
-
-          fakeMqttServer.server.publish(buildEvent(FAN_SPEED_EVENT), noop);
+          }
         });
 
-        it('should send the basic state change command for device', async done => {
-          fakeMqttServer.server.on('published', function(packet, client) {
-            if (packet.topic === STATUS_CHANGE_COMMAND_TOPIC) {
-              expect(packet.payload.toString()).toBe(
-                '{"Method":"devices.control","Params":[{"Devices":[{"Uuid":"abd4b98b-f197-42ed-a51a-1681b9176228","Properties":[{"FanSpeed":"Medium"}]}]}]}',
-              );
-              done();
-            }
-          });
-
-          nhc2.sendFanSpeedCommand('abd4b98b-f197-42ed-a51a-1681b9176228', FanSpeed.Medium);
-        });
+        nhc2.sendFanSpeedCommand('abd4b98b-f197-42ed-a51a-1681b9176228', FanSpeed.Medium);
       });
     });
+
   });
+
 });
