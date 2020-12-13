@@ -4,12 +4,14 @@ import { Observable, Subject } from 'rxjs';
 import { filter, flatMap, map } from 'rxjs/operators';
 import { BrightnessChangeCommand } from './command/brightness-change-command';
 import { Command } from './command/command';
+import { FanSpeedChangeCommand } from './command/fan-speed-change-command';
 import { isListDevicesEvent, ListDevicesCommand } from './command/list-devices-command';
 import { PositionChangeCommand } from './command/position-change-command';
 import { StatusChangeCommand } from './command/status-change-command';
 import { TriggerBasicStateCommand } from './command/trigger-basic-state-command';
 import { Device } from './event/device';
 import { Event } from './event/event';
+import { FanSpeed } from './event/FanSpeed';
 
 export class NHC2 {
   public readonly client: mqtt.MqttClient;
@@ -59,6 +61,10 @@ export class NHC2 {
 
   public sendTriggerBasicStateCommand(deviceUuid: string) {
     this.sendCommand(TriggerBasicStateCommand(deviceUuid));
+  }
+
+  public sendFanSpeedCommand(deviceUuid: string, fanSpeed: FanSpeed){
+    this.sendCommand(FanSpeedChangeCommand(deviceUuid, fanSpeed));
   }
 
   public async subscribe() {

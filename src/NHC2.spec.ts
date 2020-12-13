@@ -1,17 +1,19 @@
-import { NHC2 } from './NHC2';
 import { noop } from 'rxjs';
+import { BRIGHTNESS_CHANGE_COMMAND_TOPIC } from './command/brightness-change-command';
+import { LIST_DEVICES_COMMAND_TOPIC } from './command/list-devices-command';
+import { Method } from './command/method';
+import { POSITION_CHANGE_COMMAND_TOPIC } from './command/position-change-command';
+import { STATUS_CHANGE_COMMAND_TOPIC } from './command/status-change-command';
+import { FanSpeed } from './event/FanSpeed';
+import { NHC2 } from './NHC2';
 import {
   BRIGHTNESS_CHANGED_EVENT,
   buildEvent,
+  FAN_SPEED_EVENT,
   POSITION_CHANGED_EVENT,
   STATUS_CHANGED_EVENT,
   TRIGGER_BASIC_STATE_EVENT,
 } from './test/event-builder';
-import { LIST_DEVICES_COMMAND_TOPIC } from './command/list-devices-command';
-import { Method } from './command/method';
-import { STATUS_CHANGE_COMMAND_TOPIC } from './command/status-change-command';
-import { BRIGHTNESS_CHANGE_COMMAND_TOPIC } from './command/brightness-change-command';
-import { POSITION_CHANGE_COMMAND_TOPIC } from './command/position-change-command';
 import FakeMqttServer from './test/fake-mqtt-server';
 
 let fakeMqttServer: FakeMqttServer;
@@ -225,6 +227,42 @@ describe('NHC2', () => {
         });
 
         nhc2.sendTriggerBasicStateCommand('abd4b98b-f197-42ed-a51a-1681b9176228');
+      });
+      
+      describe('update fan speed', () => {
+        it('should emit thefan speed event', done => {
+          nhc2.getEvents().subscribe(event => {
+            expect(event).toStrictEqual({
+              Method: Method.DEVICES_STATUS,
+              Params: [
+                {
+                  Devices: [
+                    {
+                      Properties: [{ FanSpeed: FanSpeed.High }],
+                      Uuid: '25ee33e3-5b9c-4171-8ede-7e94f1cb6b33',
+                    },
+                  ],
+                },
+              ],
+            });
+            done();
+          });
+
+          fakeMqttServer.server.publish(buildEvent(FAN_SPEED_EVENT), noop);
+        });
+
+        it('should send the basic state change command for device', async done => {
+          fakeMqttServer.server.on('published', function(packet, client) {
+            if (packet.topic === STATUS_CHANGE_COMMAND_TOPIC) {
+              expect(packet.payload.toString()).toBe(
+                '{"Method":"devices.control","Params":[{"Devices":[{"Uuid":"abd4b98b-f197-42ed-a51a-1681b9176228","Properties":[{"FanSpeed":"Medium"}]}]}]}',
+              );
+              done();
+            }
+          });
+
+          nhc2.sendFanSpeedCommand('abd4b98b-f197-42ed-a51a-1681b9176228', FanSpeed.Medium);
+        });
       });
     });
   });
