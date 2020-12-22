@@ -3,6 +3,8 @@ node_js:
 - node
 os:
 - linux
+before_deploy:
+  - npm ci
 deploy:
   provider: npm
   on:
