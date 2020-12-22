@@ -1,7 +1,7 @@
 # nhc2-hobby-api 
-[![Version](http://img.shields.io/npm/v/nhc2-hobby-api.png)](https://www.npmjs.com/package/@homebridge-nhc2/nhc2-hobby-api)
-[![License](https://img.shields.io/npm/l/nhc2-hobby-api.svg)](https://github.com/homebridge-nhc2/nhc2-hobby-api/blob/master/LICENSE)
-[![Downloads](https://img.shields.io/npm/dt/nhc2-hobby-api.svg)](https://www.npmjs.com/package/@homebridge-nhc2/nhc2-hobby-api)
+[![Version](http://img.shields.io/npm/v/@homebridge-nhc2/nhc2-hobby-api.png)](https://www.npmjs.com/package/@homebridge-nhc2/nhc2-hobby-api)
+[![License](https://img.shields.io/npm/l/@homebridge-nhc2/nhc2-hobby-api.svg)](https://github.com/homebridge-nhc2/nhc2-hobby-api/blob/master/LICENSE)
+[![Downloads](https://img.shields.io/npm/dt/@homebridge-nhc2/nhc2-hobby-api.svg)](https://www.npmjs.com/package/@homebridge-nhc2/nhc2-hobby-api)
 [![Build Status](https://travis-ci.com/homebridge-nhc2/nhc2-hobby-api.svg?branch=master)](https://travis-ci.com/homebridge-nhc2/nhc2-hobby-api)
 [![Coverage Status](https://coveralls.io/repos/github/homebridge-nhc2/nhc2-hobby-api/badge.svg?branch=master)](https://coveralls.io/github/homebridge-nhc2/nhc2-hobby-api?branch=master)
 [![Dependencies](https://david-dm.org/homebridge-nhc2/nhc2-hobby-api.svg)](https://david-dm.org/homebridge-nhc2/nhc2-hobby-api)
