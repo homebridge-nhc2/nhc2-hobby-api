@@ -1,5 +1,5 @@
-import { Method } from './method';
 import { FanSpeed } from '../event/FanSpeed';
+import { Method } from './method';
 
 export const STATUS_CHANGE_COMMAND_TOPIC = 'hobby/control/devices/cmd';
 export const FanSpeedChangeCommand = (uuid: string, speed: FanSpeed) => ({

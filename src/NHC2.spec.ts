@@ -148,7 +148,6 @@ describe('NHC2', () => {
       });
     });
 
-
     describe('brigthness change event', () => {
       it('should emit the brightness change event', done => {
         nhc2.getEvents().subscribe(event => {
@@ -266,7 +265,5 @@ describe('NHC2', () => {
         nhc2.sendFanSpeedCommand('abd4b98b-f197-42ed-a51a-1681b9176228', FanSpeed.Medium);
       });
     });
-
   });
-
 });

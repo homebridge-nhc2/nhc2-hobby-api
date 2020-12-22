@@ -63,7 +63,7 @@ export class NHC2 {
     this.sendCommand(TriggerBasicStateCommand(deviceUuid));
   }
 
-  public sendFanSpeedCommand(deviceUuid: string, fanSpeed: FanSpeed){
+  public sendFanSpeedCommand(deviceUuid: string, fanSpeed: FanSpeed) {
     this.sendCommand(FanSpeedChangeCommand(deviceUuid, fanSpeed));
   }
 
