@@ -201,3 +201,10 @@ some basic usage scenarios for the library.  These samples are written in typesc
     cd samples
     tsc turn-on-all-lights.ts 
     node turn-on-all-lights.js 
+
+# Releasing a new version
+To release a new version it is sufficient to bump the version number, and make sure to push the tagged commit. 
+Travis CI will recognize the tagged commit and publish the package to npmjs.
+```bash
+    npm version 2.0.0
+```
