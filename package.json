@@ -1,6 +1,6 @@
 {
 	"name": "@homebridge-nhc2/nhc2-hobby-api",
-	"version": "2.0.0-8",
+	"version": "2.0.0-9",
 	"description": "A wrapper library for the Niko Home Control 2 Hobby API",
 	"main": "lib/NHC2.js",
 	"scripts": {
