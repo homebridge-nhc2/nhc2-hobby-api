@@ -1,10 +1,10 @@
 # nhc2-hobby-api 
 [![Version](http://img.shields.io/npm/v/nhc2-hobby-api.png)](https://www.npmjs.org/package/nhc2-hobby-api)
-[![License](https://img.shields.io/npm/l/nhc2-hobby-api.svg)](https://github.com/wvanvlaenderen/nhc2-hobby-api/blob/master/LICENSE)
+[![License](https://img.shields.io/npm/l/nhc2-hobby-api.svg)](https://github.com/homebridge-nhc2/nhc2-hobby-api/blob/master/LICENSE)
 [![Downloads](https://img.shields.io/npm/dt/nhc2-hobby-api.svg)](https://www.npmjs.org/package/nhc2-hobby-api)
-[![Build Status](https://travis-ci.org/wvanvlaenderen/nhc2-hobby-api.svg?branch=master)](https://travis-ci.org/wvanvlaenderen/nhc2-hobby-api)
-[![Coverage Status](https://coveralls.io/repos/github/wvanvlaenderen/nhc2-hobby-api/badge.svg?branch=master)](https://coveralls.io/github/wvanvlaenderen/nhc2-hobby-api?branch=master)
-[![Dependencies](https://david-dm.org/wvanvlaenderen/nhc2-hobby-api.svg)](https://david-dm.org/wvanvlaenderen/nhc2-hobby-api)
+[![Build Status](https://travis-ci.org/homebridge-nhc2/nhc2-hobby-api.svg?branch=master)](https://travis-ci.org/homebridge-nhc2/nhc2-hobby-api)
+[![Coverage Status](https://coveralls.io/repos/github/homebridge-nhc2/nhc2-hobby-api/badge.svg?branch=master)](https://coveralls.io/github/homebridge-nhc2/nhc2-hobby-api?branch=master)
+[![Dependencies](https://david-dm.org/homebridge-nhc2/nhc2-hobby-api.svg)](https://david-dm.org/homebridge-nhc2/nhc2-hobby-api)
 
 As of October 29, 2019 Niko has published their [Hobby API](https://www.niko.eu/en/campaign/niko-home-control/hobby-api) which allows end users to control their Niko Home Control 2 installation through the MQTT protocol.
 
@@ -22,7 +22,7 @@ The library can also control your installation through commands. Commands suppor
 ## Changes
 
 You can read the complete history of changes in the 
-[CHANGELOG](https://github.com/wvanvlaenderen/nhc2-hobby-api/blob/master/CHANGELOG.md).
+[CHANGELOG](https://github.com/homebridge-nhc2/nhc2-hobby-api/blob/master/CHANGELOG.md).
 
 ## Known Issues
 
@@ -37,12 +37,12 @@ development.
 2. **Simple**. Using the library should be simple and straightforward 
 following common conventions.
 3. **Completeness** This library is a far way from being complete, but we aim to make this library feature complete based on the official Niko documentation.
-4. **Homebridge** The intent of developing this library is to build a [homebridge plugin](https://github.com/wvanvlaenderen/homebridge-nhc2) on top of this library to support control of the installation through Apple HomeKit. This plugin still needs to be developed. When adding features feel free to include the feature in the homebridge plugin as well.
+4. **Homebridge** The intent of developing this library is to build a [homebridge plugin](https://github.com/homebridge-nhc2/homebridge-nhc2) on top of this library to support control of the installation through Apple HomeKit. This plugin still needs to be developed. When adding features feel free to include the feature in the homebridge plugin as well.
 
 ## Contributing
 
 Contributions are welcome, particularly bug fixes and enhancements!
-Refer to our [Contribution Guidelines](https://github.com/wvanvlaenderen/nhc2-hobby-api/blob/master/CONTRIBUTING.md) for details.
+Refer to our [Contribution Guidelines](https://github.com/homebridge-nhc2/nhc2-hobby-api/blob/master/CONTRIBUTING.md) for details.
 
 > Please note that Project owners reserve the right to accept or reject any PR
 > for any reason.
@@ -51,7 +51,7 @@ Refer to our [Contribution Guidelines](https://github.com/wvanvlaenderen/nhc2-ho
 
 Before contributing or participating in the nhc2-hobby-api community please be sure to 
 familiarize yourself with our project 
-[CODE OF CONDUCT](https://github.com/wvanvlaenderen/nhc2-hobby-api/blob/master/CODE_OF_CONDUCT.md). 
+[CODE OF CONDUCT](https://github.com/homebridge-nhc2/nhc2-hobby-api/blob/master/CODE_OF_CONDUCT.md). 
 These guidelines are intended to govern interactions with and within the nhc2-hobby-api 
 community.
 
@@ -97,7 +97,7 @@ node projects you may use:
     npm install -g nhc2-hobby-api
 
 You may also install directly from the GitHub 
-[source](https://github.com/wvanvlaenderen/nhc2-hobby-api). Either download and unzip 
+[source](https://github.com/homebridge-nhc2/nhc2-hobby-api). Either download and unzip 
 the source, or clone the repository.
 
 > Remember, whether you install via ZIP source or Git clone you must install 

@@ -5,7 +5,7 @@ Requests` will be considered with the following criteria:
 
 1. Must pass the build
 2. Should make every effort meet or exceed current code coverage level
-3. Must respect and align to Project Principles (see [README.md](https://github.com/wvanvlaenderen/nhc2-hobby-api/blob/master/README.md))
+3. Must respect and align to Project Principles (see [README.md](https://github.com/homebridge-nhc2/nhc2-hobby-api/blob/master/README.md))
 4. Must add general value to the project
 5. Must update appropriate documentation
 6. New functionality should be demonstrated in a new or updated sample

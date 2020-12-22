@@ -17,20 +17,16 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/wvanvlaenderen/nhc2-hobby-api.git"
+		"url": "git+https://github.com/homebridge-nhc2/nhc2-hobby-api.git"
 	},
 	"keywords": [
 		"Niko Home Control"
 	],
-	"author": {
-		"name": "Wouter Van Vlaenderen",
-		"url": "https://github.com/wvanvlaenderen"
-	},
 	"license": "MIT",
 	"bugs": {
-		"url": "https://github.com/wvanvlaenderen/nhc2-hobby-api/issues"
+		"url": "https://github.com/homebridge-nhc2/nhc2-hobby-api/issues"
 	},
-	"homepage": "https://github.com/wvanvlaenderen/nhc2-hobby-api#readme",
+	"homepage": "https://github.com/homebridge-nhc2/nhc2-hobby-api#readme",
 	"devDependencies": {
 		"@babel/core": "^7.7.2",
 		"@babel/preset-env": "^7.7.1",
