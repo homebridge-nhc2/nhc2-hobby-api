@@ -5,6 +5,7 @@
 [![Build Status](https://travis-ci.com/homebridge-nhc2/nhc2-hobby-api.svg?branch=master)](https://travis-ci.com/homebridge-nhc2/nhc2-hobby-api)
 [![Coverage Status](https://coveralls.io/repos/github/homebridge-nhc2/nhc2-hobby-api/badge.svg?branch=master)](https://coveralls.io/github/homebridge-nhc2/nhc2-hobby-api?branch=master)
 [![Dependencies](https://david-dm.org/homebridge-nhc2/nhc2-hobby-api.svg)](https://david-dm.org/homebridge-nhc2/nhc2-hobby-api)
+[![Gitter chat](https://badges.gitter.im/homebridge-nhc2/community.png)](https://gitter.im/homebridge-nhc2/community)
 
 As of October 29, 2019 Niko has published their [Hobby API](https://www.niko.eu/en/campaign/niko-home-control/hobby-api) which allows end users to control their Niko Home Control 2 installation through the MQTT protocol.
 
