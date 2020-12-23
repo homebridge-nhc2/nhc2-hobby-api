@@ -68,7 +68,7 @@ export class NHC2 {
   }
 
   public async subscribe() {
-    return new Promise(resolve => {
+    return new Promise<void>(resolve => {
       this.client
         .on('connect', () => {
           this.client.subscribe('hobby/control/devices/+', () => resolve()); // Wildcard subscription
