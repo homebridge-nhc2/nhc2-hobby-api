@@ -1,5 +1,5 @@
-import { Event } from '../event/event';
 import { Method } from '../command/method';
+import { Event } from '../event/event';
 import { FanSpeed } from '../event/FanSpeed';
 
 export const POSITION_CHANGED_EVENT: Event = {
@@ -23,7 +23,7 @@ export const BRIGHTNESS_CHANGED_EVENT: Event = {
       Devices: [
         {
           Properties: [{ Brightness: '34' }],
-          Uuid: '25ee33e3-5b9c-4171-8ede-7e94f1cb6b33',
+          Uuid: '25ee33e3-5b9c-4171-8ede-7e94f1cb6b34',
         },
       ],
     },
@@ -37,7 +37,7 @@ export const STATUS_CHANGED_EVENT: Event = {
       Devices: [
         {
           Properties: [{ Status: 'On' }],
-          Uuid: '25ee33e3-5b9c-4171-8ede-7e94f1cb6b33',
+          Uuid: '25ee33e3-5b9c-4171-8ede-7e94f1cb6b35',
         },
       ],
     },
@@ -51,21 +51,21 @@ export const TRIGGER_BASIC_STATE_EVENT: Event = {
       Devices: [
         {
           Properties: [{ BasicState: 'On' }],
-          Uuid: '25ee33e3-5b9c-4171-8ede-7e94f1cb6b33',
+          Uuid: '25ee33e3-5b9c-4171-8ede-7e94f1cb6b36',
         },
       ],
     },
   ],
 };
 
-export const FAN_SPEED_EVENT: Event = {
+export const FAN_SPEED_CHANGED_EVENT: Event = {
   Method: Method.DEVICES_STATUS,
   Params: [
     {
       Devices: [
         {
           Properties: [{ FanSpeed: FanSpeed.High }],
-          Uuid: '25ee33e3-5b9c-4171-8ede-7e94f1cb6b33',
+          Uuid: '25ee33e3-5b9c-4171-8ede-7e94f1cb6b37',
         },
       ],
     },

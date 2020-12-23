@@ -1,9 +1,9 @@
 import { Server } from 'mosca';
-import { LIST_DEVICES_COMMAND_TOPIC } from '../command/list-devices-command';
+import { noop } from 'rxjs';
 import { Command } from '../command/command';
+import { LIST_DEVICES_COMMAND_TOPIC } from '../command/list-devices-command';
 import { Method } from '../command/method';
 import { buildEvent, LIST_DEVICS_EVENT } from './event-builder';
-import { noop } from 'rxjs';
 
 export default class FakeMqttServer {
   public readonly PORT = 1883;
@@ -28,7 +28,7 @@ export default class FakeMqttServer {
     });
   }
 
-  close() {
+  public close() {
     this.server.close();
   }
 }
