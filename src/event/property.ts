@@ -6,4 +6,5 @@ export interface Property {
   Position?: string;
   BasicState?: string;
   FanSpeed?: FanSpeed;
+  Moving?: string;
 }
