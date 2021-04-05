@@ -113,8 +113,10 @@ export const LIST_DEVICS_EVENT: Event = {
 };
 
 export const buildEvent = (event: Event) => ({
+  cmd: 'publish' as const,
+  dup: false,
   topic: 'hobby/control/devices/evt',
   payload: JSON.stringify(event),
-  qos: 0,
+  qos: 0 as const,
   retain: false,
 });
