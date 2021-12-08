@@ -1,5 +1,7 @@
 # Changelog
 
+## v2.0.2
+* Replaced Mosca with Aedes
 ## v2.0.0
 * Added events
   * query available devices in a NHC2 installation
