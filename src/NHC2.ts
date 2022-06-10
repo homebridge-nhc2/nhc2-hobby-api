@@ -22,6 +22,10 @@ export class NHC2 {
     this.client = mqtt.connect(brokerUrl, options);
   }
 
+  public close(): void {
+    this.client.end();
+  }
+
   public getEvents(): Observable<Event> {
     return this.events.asObservable();
   }
@@ -71,7 +75,7 @@ export class NHC2 {
     return new Promise(resolve => {
       this.client
         .on('connect', () => {
-          this.client.subscribe('hobby/control/devices/+', () => resolve()); // Wildcard subscription
+          this.client.subscribe('hobby/control/devices/+', () => resolve(undefined)); // Wildcard subscription
         })
         .on('message', (topic: string, message: string) => {
           this.events.next(JSON.parse(message.toString()));

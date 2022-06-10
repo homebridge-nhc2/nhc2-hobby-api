@@ -12,7 +12,7 @@ export default class FakeMqttServer {
   public server: Server;
 
   constructor() {
-    this.broker = aedes();
+    this.broker = (aedes as any)();
     this.server = createServer(this.broker.handle);
     this.server.listen(this.PORT, noop);
     // this.server = new Server({ port: this.PORT });

@@ -1,3 +1,4 @@
+import { resolve } from 'dns';
 import { noop } from 'rxjs';
 import { BRIGHTNESS_CHANGE_COMMAND_TOPIC } from './command/brightness-change-command';
 import { LIST_DEVICES_COMMAND_TOPIC } from './command/list-devices-command';
@@ -29,19 +30,23 @@ describe('NHC2', () => {
   });
 
   afterEach(() => {
+    nhc2.close();
     fakeMqttServer.close();
   });
 
   describe('getAccessories', () => {
-    it('should send the list devices command', async done => {
-      fakeMqttServer.broker.subscribe(LIST_DEVICES_COMMAND_TOPIC, (packet, _) => {
-        if (packet.topic === LIST_DEVICES_COMMAND_TOPIC) {
-          expect(packet.payload.toString()).toBe('{"Method":"devices.list"}');
-          done();
-        }
-      }, noop);
+    it('should send the list devices command', async () => {
+      const result = new Promise((resolve) => {
+        fakeMqttServer.broker.subscribe(LIST_DEVICES_COMMAND_TOPIC, (packet, _) => {
+          if (packet.topic === LIST_DEVICES_COMMAND_TOPIC) {
+            expect(packet.payload.toString()).toBe('{"Method":"devices.list"}');
+            resolve(null);
+          }
+        }, noop);
+      });
 
       await nhc2.getAccessories();
+      await result;
     });
 
     it('should list only Online devices', async () => {
@@ -68,7 +73,7 @@ describe('NHC2', () => {
   });
 
   describe('sendStatusChangeCommand', () => {
-    it('should send the status change command for device with value true', async done => {
+    it('should send the status change command for device with value true', done => {
       fakeMqttServer.broker.subscribe(STATUS_CHANGE_COMMAND_TOPIC, (packet, _) => {
         if (packet.topic === STATUS_CHANGE_COMMAND_TOPIC) {
           expect(packet.payload.toString()).toBe(
@@ -81,7 +86,7 @@ describe('NHC2', () => {
       nhc2.sendStatusChangeCommand('488d61fa-de6c-4b1c-a832-f1971dc12110', true);
     });
 
-    it('should send the status change command for device with value true', async done => {
+    it('should send the status change command for device with value true', done => {
       fakeMqttServer.broker.subscribe(STATUS_CHANGE_COMMAND_TOPIC, (packet, _) => {
         if (packet.topic === STATUS_CHANGE_COMMAND_TOPIC) {
           expect(packet.payload.toString()).toBe(
@@ -96,7 +101,7 @@ describe('NHC2', () => {
   });
 
   describe('sendBrightnessChangeCommand', () => {
-    it('should send the brightness change command for device with value 50', async done => {
+    it('should send the brightness change command for device with value 50', done => {
       fakeMqttServer.broker.subscribe(BRIGHTNESS_CHANGE_COMMAND_TOPIC, (packet, _) => {
         if (packet.topic === BRIGHTNESS_CHANGE_COMMAND_TOPIC) {
           expect(packet.payload.toString()).toBe(
@@ -111,7 +116,7 @@ describe('NHC2', () => {
   });
 
   describe('sendPositionChangeCommand', () => {
-    it('should send the position change command for device with value 50', async done => {
+    it('should send the position change command for device with value 50', done => {
       fakeMqttServer.broker.subscribe(POSITION_CHANGE_COMMAND_TOPIC, (packet, _) => {
         if (packet.topic === POSITION_CHANGE_COMMAND_TOPIC) {
           expect(packet.payload.toString()).toBe(
@@ -263,7 +268,7 @@ describe('NHC2', () => {
         fakeMqttServer.broker.publish(buildEvent(TRIGGER_BASIC_STATE_EVENT), noop);
       });
 
-      it('should send the basic state change command for device', async done => {
+      it('should send the basic state change command for device', done => {
         fakeMqttServer.broker.subscribe(STATUS_CHANGE_COMMAND_TOPIC, (packet, _) => {
           if (packet.topic === STATUS_CHANGE_COMMAND_TOPIC) {
             expect(packet.payload.toString()).toBe(
@@ -278,7 +283,7 @@ describe('NHC2', () => {
     });
 
     describe('fan speed event', () => {
-      it('should send the fan speed change command', async done => {
+      it('should send the fan speed change command', done => {
         fakeMqttServer.broker.subscribe(STATUS_CHANGE_COMMAND_TOPIC, (packet, _) => {
           if (packet.topic === STATUS_CHANGE_COMMAND_TOPIC) {
             expect(packet.payload.toString()).toBe(
